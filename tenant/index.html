@@ -5,86 +5,32 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dashboard Cafe — Sigma</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f6f8;color:#172033}
-.w{max-width:1150px;margin:auto;padding:24px}
-.hero,.card{background:#fff;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:0 5px 22px #0001}
-.hero{background:#172033;color:#fff}.muted{color:#6b7585}.hero .muted{color:#cbd3df}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.mod{background:#fff;border:1px solid #e1e6ed;border-radius:14px;padding:18px;color:#172033;box-shadow:0 4px 15px #00000008}
-.mod-title{font-size:18px;font-weight:800}.mod small{display:block;color:#6b7585;font-weight:500;margin-top:5px}
-.urlrow{display:flex;gap:8px;margin-top:14px;align-items:stretch}.urlrow input{min-width:0;flex:1;background:#f5f7fa;font-size:13px;color:#46546a}
-.urlrow a,.urlrow button{width:auto;margin:0;padding:10px 13px;border:1px solid #d7dce5;border-radius:10px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
-.open{background:#172033;color:#fff}.copy{background:#172033;color:#fff}.copy.ok{background:#166534}.danger{background:#fff0f0!important;color:#991b1b!important}
-.login{max-width:560px;margin:40px auto}input,button{width:100%;padding:13px;border:1px solid #d7dce5;border-radius:10px;font:inherit}button{background:#172033;color:#fff;cursor:pointer;margin-top:10px}
-.msg{padding:11px;border-radius:10px;background:#eef3f8;margin-top:10px}.hide{display:none}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.top button{width:auto;margin:0}
-.hint{padding:12px 14px;background:#eef3f8;border-radius:10px;color:#536176;margin-bottom:14px}
-.path{margin-top:10px;font-size:12px;color:#718096;word-break:break-all}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.w{padding:14px}.urlrow{flex-wrap:wrap}.urlrow input{flex-basis:100%}.urlrow a,.urlrow button{flex:1}}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f6f8;color:#172033}.w{max-width:1150px;margin:auto;padding:24px}.hero,.card{background:#fff;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:0 5px 22px #0001}.hero{background:#172033;color:#fff}.muted{color:#6b7585}.hero .muted{color:#cbd3df}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.mod{background:#fff;border:1px solid #e1e6ed;border-radius:14px;padding:18px;color:#172033;box-shadow:0 4px 15px #00000008}.mod-title{font-size:18px;font-weight:800}.mod small{display:block;color:#6b7585;font-weight:500;margin-top:5px}.urlrow{display:flex;gap:8px;margin-top:14px;align-items:stretch}.urlrow input{min-width:0;flex:1;background:#f5f7fa;font-size:13px;color:#46546a}.urlrow a,.urlrow button{width:auto;margin:0;padding:10px 13px;border:1px solid #d7dce5;border-radius:10px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}.open{background:#172033;color:#fff}.copy{background:#172033;color:#fff}.copy.ok{background:#166534}.danger{background:#fff0f0!important;color:#991b1b!important}.login{max-width:560px;margin:40px auto}input,button{width:100%;padding:13px;border:1px solid #d7dce5;border-radius:10px;font:inherit}button{background:#172033;color:#fff;cursor:pointer;margin-top:10px}.msg{padding:11px;border-radius:10px;background:#eef3f8;margin-top:10px}.hide{display:none}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.top button{width:auto;margin:0}.hint{padding:12px 14px;background:#eef3f8;border-radius:10px;color:#536176;margin-bottom:14px}.path{margin-top:10px;font-size:12px;color:#718096;word-break:break-all}@media(max-width:700px){.grid{grid-template-columns:1fr}.w{padding:14px}.urlrow{flex-wrap:wrap}.urlrow input{flex-basis:100%}.urlrow a,.urlrow button{flex:1}}
 </style>
 </head>
 <body>
 <main class="w">
 <section class="hero"><h1 id="name">Sigma Cafe</h1><div id="meta" class="muted">Dashboard penyewa</div></section>
-<section id="login" class="card login">
-<h2>Login Penyewa</h2><p class="muted">Masukkan ID dan password yang dibuat Admin Sigma.</p>
-<input id="loginid" autocomplete="username" placeholder="ID Penyewa">
-<input id="password" type="password" autocomplete="current-password" placeholder="Password">
-<button id="loginBtn" type="button">Masuk ke Cafe</button><div id="loginMsg" class="msg hide"></div>
-</section>
-<section id="app" class="hide">
-<section class="card"><div class="top"><div><h2 style="margin:0 0 6px">Dashboard <span id="cafeName"></span></h2><div id="info" class="muted"></div></div><button id="logout" class="danger" type="button">Keluar</button></div></section>
-<section class="card"><h2>Aplikasi Cafe</h2>
-<div class="hint">Setiap tombol sekarang menggunakan <b>tautan langsung</b> ke modul. Tombol Buka tidak lagi bergantung pada popup JavaScript, dan tombol Salin memiliki fallback untuk browser yang membatasi Clipboard API.</div>
-<div id="links" class="grid"></div>
-</section>
-</section>
+<section id="login" class="card login"><h2>Login Penyewa</h2><p class="muted">Masukkan ID dan password yang dibuat Admin Sigma.</p><input id="loginid" autocomplete="username" placeholder="ID Penyewa"><input id="password" type="password" autocomplete="current-password" placeholder="Password"><button id="loginBtn" type="button">Masuk ke Cafe</button><div id="loginMsg" class="msg hide"></div></section>
+<section id="app" class="hide"><section class="card"><div class="top"><div><h2 style="margin:0 0 6px">Dashboard <span id="cafeName"></span></h2><div id="info" class="muted"></div></div><button id="logout" class="danger" type="button">Keluar</button></div></section>
+<section class="card"><h2>Aplikasi Cafe</h2><div class="hint">Semua tombol memakai domain yang sedang Anda buka. Jadi session login tetap terbawa saat berpindah ke QR Meja, Pelanggan, Kasir, Dapur, Owner, dan Stok Barang.</div><div id="links" class="grid"></div></section></section>
 </main>
 <script>
 const SUPABASE_URL='https://xvhimyflrqrdudijwjdn.supabase.co';
 const SUPABASE_KEY='sb_publishable_WHyroGN6czktqO5F8L4Xng_P7p5a3St';
-const DEPLOY_BASE='https://zigzag-rvcq-8uqwwjl9q-issho-cafe.vercel.app';
 const slug=new URLSearchParams(location.search).get('tenant')||'kva';
-const modules=[
- ['qr-meja','▦','QR Meja','Kelola QR meja pelanggan'],
- ['customer','🛒','Pelanggan','Menu, WhatsApp, dan pesanan'],
- ['kasir','▣','Kasir','Order dan pembayaran'],
- ['dapur','♨','Dapur','Antrean produksi realtime'],
- ['owner','◉','Owner','Laporan dan pengaturan'],
- ['stokis','▤','Stok Barang','Persediaan dan pergerakan stok']
-];
+const modules=[['qr-meja','▦','QR Meja','Kelola QR meja pelanggan'],['customer','🛒','Pelanggan','Menu, WhatsApp, dan pesanan'],['kasir','▣','Kasir','Order dan pembayaran'],['dapur','♨','Dapur','Antrean produksi realtime'],['owner','◉','Owner','Laporan dan pengaturan'],['stokis','▤','Stok Barang','Persediaan dan pergerakan stok']];
 const $=id=>document.getElementById(id);
-async function rpc(name,body){
- const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
- let j={};try{j=await r.json()}catch{}if(!r.ok)throw Error(j.message||'Backend error');return j;
-}
+async function rpc(name,body){const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});let j={};try{j=await r.json()}catch{}if(!r.ok)throw Error(j.message||'Backend error');return j}
 function showLogin(t){$('name').textContent='☕ '+(t.cafe_name||slug.toUpperCase());$('meta').textContent='Login penyewa diperlukan';$('login').classList.remove('hide');$('app').classList.add('hide')}
-function moduleUrl(file,tenant){return DEPLOY_BASE+'/tenant/'+file+'.html?tenant='+encodeURIComponent(tenant)+'&v=20260830'}
-function renderLinks(t){
- $('links').innerHTML=modules.map(m=>{
-   const url=moduleUrl(m[0],t.slug);
-   const safe=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-   return `<div class="mod"><div class="mod-title">${m[1]} ${m[2]}</div><small>${m[3]}</small><div class="path">${safe}</div><div class="urlrow"><input readonly value="${safe}"><a class="open" href="${safe}" target="_blank" rel="noopener">Buka</a><button class="copy" type="button" data-url="${safe}" onclick="copyLink(this.dataset.url,this)">Salin</button></div></div>`;
- }).join('');
-}
-async function copyLink(url,btn){
- try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url)}else{throw new Error('fallback')}}
- catch(e){
-   const ta=document.createElement('textarea');ta.value=url;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,ta.value.length);
-   const ok=document.execCommand('copy');document.body.removeChild(ta);if(!ok)throw e;
- }
- const old=btn.textContent;btn.textContent='Tersalin ✓';btn.classList.add('ok');setTimeout(()=>{btn.textContent=old;btn.classList.remove('ok')},1400);
-}
-async function check(){
- const token=sessionStorage.getItem('sigma_tenant_token');
- if(!token){const r=await fetch(SUPABASE_URL+'/rest/v1/sigma_tenants?select=cafe_name,slug&slug=eq.'+encodeURIComponent(slug),{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});const d=await r.json();showLogin(d[0]||{cafe_name:slug.toUpperCase()});return}
- try{const j=await rpc('sigma_tenant_session_context',{p_token:token});if(!j.ok||j.slug!==slug){sessionStorage.removeItem('sigma_tenant_token');showLogin(j);return}showApp(j)}catch(e){sessionStorage.removeItem('sigma_tenant_token');showLogin({cafe_name:slug.toUpperCase()})}
-}
-function showApp(t){
- $('name').textContent='☕ '+t.cafe_name;$('meta').textContent='Kode '+t.tenant_code+' · '+String(t.status).toUpperCase()+' · Paket '+(t.package_name||'commercial');$('cafeName').textContent=t.cafe_name;$('info').textContent='Owner: '+(t.owner_name||'-')+' · Berakhir: '+(t.expires_at?new Date(t.expires_at).toLocaleDateString('id-ID'):'-');renderLinks(t);$('login').classList.add('hide');$('app').classList.remove('hide');
-}
+function moduleUrl(file,tenant){const u=new URL('./'+file+'.html',location.href);u.search='';u.searchParams.set('tenant',tenant);u.searchParams.set('v','20260830');return u.href}
+function escAttr(v){return String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function renderLinks(t){$('links').innerHTML=modules.map(m=>{const url=moduleUrl(m[0],t.slug),safe=escAttr(url);return `<div class="mod"><div class="mod-title">${m[1]} ${m[2]}</div><small>${m[3]}</small><div class="path">${safe}</div><div class="urlrow"><input readonly value="${safe}"><a class="open" href="${safe}" target="_blank" rel="noopener">Buka</a><button class="copy" type="button" data-url="${safe}" onclick="copyLink(this.dataset.url,this)">Salin</button></div></div>`}).join('')}
+async function copyLink(url,btn){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url)}else{throw new Error('fallback')}}catch(e){const ta=document.createElement('textarea');ta.value=url;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,ta.value.length);const ok=document.execCommand('copy');document.body.removeChild(ta);if(!ok){$('loginMsg').textContent='Gagal menyalin. Silakan blok URL lalu Ctrl+C.';$('loginMsg').classList.remove('hide');return}}const old=btn.textContent;btn.textContent='Tersalin ✓';btn.classList.add('ok');setTimeout(()=>{btn.textContent=old;btn.classList.remove('ok')},1400)}
+async function check(){const token=sessionStorage.getItem('sigma_tenant_token');if(!token){const r=await fetch(SUPABASE_URL+'/rest/v1/sigma_tenants?select=cafe_name,slug&slug=eq.'+encodeURIComponent(slug),{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});const d=await r.json();showLogin(d[0]||{cafe_name:slug.toUpperCase()});return}try{const j=await rpc('sigma_tenant_session_context',{p_token:token});if(!j.ok||j.slug!==slug){sessionStorage.removeItem('sigma_tenant_token');showLogin(j);return}showApp(j)}catch(e){sessionStorage.removeItem('sigma_tenant_token');showLogin({cafe_name:slug.toUpperCase()})}}
+function showApp(t){$('name').textContent='☕ '+t.cafe_name;$('meta').textContent='Kode '+t.tenant_code+' · '+String(t.status).toUpperCase()+' · Paket '+(t.package_name||'commercial');$('cafeName').textContent=t.cafe_name;$('info').textContent='Owner: '+(t.owner_name||'-')+' · Berakhir: '+(t.expires_at?new Date(t.expires_at).toLocaleDateString('id-ID'):'-');renderLinks(t);$('login').classList.add('hide');$('app').classList.remove('hide')}
 $('loginBtn').onclick=async()=>{const id=$('loginid').value.trim(),pw=$('password').value;if(!id||!pw){$('loginMsg').textContent='ID dan password wajib diisi.';$('loginMsg').classList.remove('hide');return}$('loginBtn').disabled=true;try{const j=await rpc('sigma_tenant_login',{p_login_id:id,p_password:pw});if(!j.ok)throw Error(j.message||'Login gagal');sessionStorage.setItem('sigma_tenant_token',j.token);await check()}catch(e){$('loginMsg').textContent=e.message;$('loginMsg').classList.remove('hide')}finally{$('loginBtn').disabled=false}};
-$('logout').onclick=()=>{sessionStorage.removeItem('sigma_tenant_token');location.href=DEPLOY_BASE+'/tenant/index.html?tenant='+encodeURIComponent(slug)+'&v=20260830'};
+$('logout').onclick=()=>{sessionStorage.removeItem('sigma_tenant_token');location.href=new URL('./index.html?tenant='+encodeURIComponent(slug)+'&v=20260830',location.href).href};
 check();
 </script>
 </body>
