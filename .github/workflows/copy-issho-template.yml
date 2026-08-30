@@ -18,12 +18,12 @@ jobs:
           set -euo pipefail
           mkdir -p /tmp/issho
           git clone --depth 1 https://github.com/ariholly86-de/issho-cafe-online-v3.git /tmp/issho
+          rm -rf /tmp/issho/.git
           cp .github/workflows/copy-issho-template.yml /tmp/copy-issho-template.yml
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github -exec rm -rf {} +
           cp -a /tmp/issho/. .
           mkdir -p .github/workflows
           cp /tmp/copy-issho-template.yml .github/workflows/copy-issho-template.yml
-          rm -rf /tmp/issho/.git
       - name: Commit template copy
         shell: bash
         run: |
