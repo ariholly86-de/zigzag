@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zigzag — Bantu Temukan HP</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f6f8;color:#172033}.wrap{max-width:620px;margin:auto;padding:18px}.card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 6px 24px #0001;margin-bottom:16px}h1{margin:0 0 8px}.muted{color:#687386;line-height:1.5}.notice{background:#eef3f8;border-radius:14px;padding:14px;margin:16px 0}.video{width:100%;aspect-ratio:3/4;object-fit:cover;background:#111;border-radius:16px;display:block}.actions{display:grid;gap:10px;margin-top:14px}button{border:0;border-radius:12px;padding:14px;font:inherit;font-weight:800;background:#172033;color:#fff;cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#eef2f6;color:#172033}.danger{background:#fff0f0;color:#991b1b}.msg{padding:12px;border-radius:12px;background:#eef3f8;margin-top:12px}.hide{display:none}.shot{width:100%;border-radius:16px;display:block;margin-top:14px}.small{font-size:13px}.ok{background:#dcfce7;color:#166534}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="card">
+<h1>📱 Bantu Temukan HP</h1>
+<p class="muted">Pemilik perangkat meminta bantuan untuk mengenali perangkat yang sedang dicari. Jika Anda bersedia membantu, Anda dapat mengaktifkan kamera depan dan mengambil satu foto.</p>
+<div class="notice"><strong>Privasi:</strong> kamera tidak dapat digunakan tanpa izin browser. Foto hanya dibuat setelah Anda menekan tombol dan memberikan izin kamera.</div>
+<div id="startArea">
+<div class="actions"><button id="start" type="button">Aktifkan Kamera Depan</button><button id="decline" type="button" class="secondary">Saya Tidak Bersedia</button></div>
+</div>
+<div id="cameraArea" class="hide">
+<video id="video" class="video" autoplay playsinline muted></video>
+<div class="actions"><button id="capture" type="button">📸 Ambil Foto</button><button id="stop" type="button" class="secondary">Matikan Kamera</button></div>
+</div>
+<div id="resultArea" class="hide">
+<img id="shot" class="shot" alt="Foto yang diambil dari kamera depan">
+<div id="resultMsg" class="msg ok">Foto sudah dibuat di perangkat ini.</div>
+<div class="actions"><button id="again" type="button">Ambil Ulang</button><button id="done" type="button" class="secondary">Selesai</button></div>
+</div>
+<div id="msg" class="msg hide" aria-live="polite"></div>
+</section>
+<section class="card small"><strong>Catatan:</strong> Foto tidak dikirim ke siapa pun dari halaman ini secara otomatis. Pengiriman ke server harus dilakukan melalui mekanisme aplikasi yang menjelaskan kepada pengguna apa yang dikirim dan kepada siapa.</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);let stream=null;
+function message(text,error=false){$('msg').textContent=text;$('msg').classList.remove('hide');$('msg').style.background=error?'#fee2e2':'#eef3f8';$('msg').style.color=error?'#991b1b':''}
+async function startCamera(){if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){message('Browser ini tidak mendukung kamera melalui halaman web.',true);return}try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'user'}},audio:false});$('video').srcObject=stream;$('startArea').classList.add('hide');$('resultArea').classList.add('hide');$('cameraArea').classList.remove('hide');$('msg').classList.add('hide')}catch(e){message('Kamera tidak dapat digunakan. Silakan izinkan akses kamera jika Anda bersedia membantu.',true)}}
+function stopCamera(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}$('video').srcObject=null;$('cameraArea').classList.add('hide')}
+$('start').onclick=startCamera;
+$('decline').onclick=()=>{stopCamera();$('startArea').classList.add('hide');message('Tidak apa-apa. Tidak ada kamera yang digunakan.');};
+$('stop').onclick=()=>{stopCamera();$('startArea').classList.remove('hide')};
+$('capture').onclick=()=>{const v=$('video'),c=document.createElement('canvas');c.width=v.videoWidth||720;c.height=v.videoHeight||960;const ctx=c.getContext('2d');ctx.drawImage(v,0,0,c.width,c.height);$('shot').src=c.toDataURL('image/jpeg',.9);stopCamera();$('cameraArea').classList.add('hide');$('resultArea').classList.remove('hide')};
+$('again').onclick=()=>{$('resultArea').classList.add('hide');startCamera()};
+$('done').onclick=()=>{stopCamera();$('resultArea').classList.add('hide');$('startArea').classList.add('hide');message('Selesai. Terima kasih telah membantu.')};
+</script>
+</body>
+</html>
